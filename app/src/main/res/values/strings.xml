@@ -4,4 +4,5 @@
     <string name="title_spends">Spends</string>
     <string name="title_alerts">Alerts</string>
     <string name="require_sms_permission_test">"Card Track requires permission to read your SMS to track your card spending by reading the notifications sent by your bank "</string>
+    <string name="card_item_title">%1$s %2$s card %3$s</string>
 </resources>
