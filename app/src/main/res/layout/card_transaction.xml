@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Clickable and selectableItemBackground are optional -->
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_list_item"
+    android:id="@+id/transaction_list_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
@@ -9,33 +9,32 @@
     android:focusable="true"
     android:minHeight="72dp"
     android:paddingStart="?listPreferredItemPaddingLeft"
-    android:paddingEnd="?listPreferredItemPaddingRight"
-    android:textAlignment="center">
+    android:paddingEnd="?listPreferredItemPaddingRight">
 
     <TextView
-        android:id="@+id/primary_action"
+        android:id="@+id/transaction_primary_action"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/card"
+        android:scaleType="fitCenter"
+        android:text="@string/money_bag"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="36sp" />
 
     <LinearLayout
-        android:id="@+id/lines_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_toEndOf="@+id/primary_action"
+        android:layout_toEndOf="@+id/transaction_primary_action"
         android:orientation="vertical"
         android:paddingTop="16dp"
         android:paddingBottom="16dp">
 
         <TextView
-            android:id="@+id/item_text_primary"
+            android:id="@+id/transaction_description_text"
             style="@style/TextAppearance.AppCompat.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,7 +42,7 @@
             tools:text="First Line" />
 
         <TextView
-            android:id="@+id/item_text_secondary"
+            android:id="@+id/transaction_timestamp_text"
             style="@style/TextAppearance.AppCompat.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

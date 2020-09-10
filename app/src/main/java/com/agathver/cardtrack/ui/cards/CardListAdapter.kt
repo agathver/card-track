@@ -11,7 +11,7 @@ import com.agathver.cardtrack.models.Card
 import java.util.*
 
 class CardListAdapter internal constructor(
-    context: Context
+    context: Context, private val clickListener: (Card) -> Unit
 ) : RecyclerView.Adapter<CardListAdapter.CardViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
@@ -32,8 +32,10 @@ class CardListAdapter internal constructor(
             R.string.card_item_title,
             card.bank,
             card.type.name.toLowerCase(Locale.ROOT).capitalize(Locale.ROOT),
-            card.identifier
+            card.identifier,
+            card.id
         )
+        holder.itemView.setOnClickListener { clickListener(card) }
     }
 
     internal fun setCards(words: List<Card>) {

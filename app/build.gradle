@@ -33,10 +33,11 @@ android {
 }
 
 ext {
-    roomVersion = "2.2.5"
-    activityVersion = "1.2.0-alpha08"
-    fragmentVersion = "1.2.5"
-    navigationVersion = "2.3.0"
+    roomVersion = '2.2.5'
+    activityVersion = '1.2.0-alpha08'
+    fragmentVersion = '1.2.5'
+    navigationVersion = '2.3.0'
+    lifecycleVersion = '2.2.0'
 }
 
 dependencies {
@@ -57,9 +58,13 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
     implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
 
     implementation "androidx.activity:activity-ktx:$activityVersion"
     implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
 
     kapt "androidx.room:room-compiler:$roomVersion"
 

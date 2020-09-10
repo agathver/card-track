@@ -3,6 +3,23 @@
     <string name="title_cards">Cards</string>
     <string name="title_spends">Spends</string>
     <string name="title_alerts">Alerts</string>
-    <string name="require_sms_permission_test">"Card Track requires permission to read your SMS to track your card spending by reading the notifications sent by your bank "</string>
-    <string name="card_item_title">%1$s %2$s card %3$s</string>
+    <string name="require_sms_permission_text">Card Track requires permission to read your SMS to track your card spending by reading the notifications sent by your bank</string>
+    <string name="card_item_title">%1$s %2$s card %3$s (%4$d)</string>
+    <string name="title_activity_card_detail">Card Details</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="money_bag">💰</string>
+    <string name="transaction_description">%1$s to %2$s</string>
+    <string name="transaction_metadata">💳 %1$s %2$s</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="app_splash_icon">💳💰</string>
+    <string name="app_tag_line">Track your card spendings</string>
+    <string name="get_started">Get started</string>
+    <string name="card">💳</string>
 </resources>

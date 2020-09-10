@@ -1,33 +1,38 @@
 package com.agathver.cardtrack.ui.cards
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.agathver.cardtrack.CardTrackViewModelFactory
 import com.agathver.cardtrack.R
 
 class CardsFragment : Fragment() {
 
-    private lateinit var cardsViewModel: CardsViewModel
+    private val cardsViewModel: CardsViewModel by activityViewModels {
+        CardsViewModelFactory(requireActivity().application)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val viewModelFactory = CardTrackViewModelFactory(requireActivity().application)
-
-        cardsViewModel = ViewModelProvider(this, viewModelFactory).get(CardsViewModel::class.java)
 
         val root = inflater.inflate(R.layout.fragment_cards, container, false)
 
         val cardList: RecyclerView = root.findViewById(R.id.card_list)
-        val adapter = CardListAdapter(requireContext())
+        val adapter = CardListAdapter(requireContext()) {
+            val cardId = it.id
+
+            val intent = Intent(requireContext(), CardTransactionsActivity::class.java)
+            intent.putExtra(CardTransactionsActivity.ARG_CARD_ID, cardId)
+            startActivity(intent)
+        }
         cardList.adapter = adapter
         cardList.layoutManager = LinearLayoutManager(requireContext())
 
@@ -35,7 +40,7 @@ class CardsFragment : Fragment() {
             cards?.let { adapter.setCards(it) }
         })
 
-        cardsViewModel.loadAllTransactions(this.requireContext())
+        cardsViewModel.loadAllTransactions()
         return root
     }
 }

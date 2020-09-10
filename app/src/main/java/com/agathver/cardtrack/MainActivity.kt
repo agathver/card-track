@@ -2,66 +2,64 @@ package com.agathver.cardtrack
 
 import android.Manifest
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.agathver.cardtrack.ui.CardTrackActivity
 
 class MainActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-        val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
-
-        if (isSmsPermissionUnavailable()) {
-            requestForSmsPermission()
+        if (isSmsPermissionAvailable()) {
+            return continueToApp()
         }
 
+        val getStartedButton: Button = findViewById(R.id.splash_getting_started_button)
+        getStartedButton.visibility = View.VISIBLE
+        getStartedButton.setOnClickListener {
+            requestSmsPermission()
+        }
     }
 
-    private fun requestForSmsPermission() {
+
+    private fun isSmsPermissionAvailable() =
+        ContextCompat.checkSelfPermission(
+            this, Manifest.permission.READ_SMS
+        ) == PackageManager.PERMISSION_GRANTED
+
+    private fun requestSmsPermission() {
         val requestPermissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-                if (!isGranted) {
+                if (isGranted) {
+                    continueToApp()
+                } else {
                     showRequiresSmsPermissionUI(null)
                 }
             }
-        showRequiresSmsPermissionUI(DialogInterface.OnClickListener { _, _ ->
+        showRequiresSmsPermissionUI() { _, _ ->
             requestPermissionLauncher.launch(Manifest.permission.READ_SMS)
-        })
+        }
+    }
+
+    private fun continueToApp() {
+        startActivity(Intent(this, CardTrackActivity::class.java))
+        finish()
     }
 
     private fun showRequiresSmsPermissionUI(okListener: DialogInterface.OnClickListener?) {
         AlertDialog.Builder(this)
-            .setMessage(R.string.require_sms_permission_test)
+            .setMessage(R.string.require_sms_permission_text)
             .setPositiveButton("OK", okListener)
             .create()
             .show()
     }
-
-    private fun isSmsPermissionUnavailable() =
-        ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.READ_SMS
-        ) != PackageManager.PERMISSION_GRANTED
 }

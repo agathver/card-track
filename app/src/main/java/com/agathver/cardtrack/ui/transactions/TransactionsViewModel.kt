@@ -1,20 +1,18 @@
-package com.agathver.cardtrack.ui.cards
+package com.agathver.cardtrack.ui.transactions
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.agathver.cardtrack.models.Card
-import com.agathver.cardtrack.repositories.CardRepository
+import com.agathver.cardtrack.repositories.TransactionRepository
 import com.agathver.cardtrack.services.TransactionImporter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CardsViewModel(
+class TransactionsViewModel(
     private val transactionImporter: TransactionImporter,
-    cardRepository: CardRepository
-) : ViewModel() {
-
-    val cards: LiveData<List<Card>> = cardRepository.findAll()
+    transactionRepository: TransactionRepository
+) :
+    ViewModel() {
+    val transactions = transactionRepository.findAll()
 
     fun loadAllTransactions() {
         viewModelScope.launch(Dispatchers.IO) {

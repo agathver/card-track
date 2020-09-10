@@ -6,17 +6,18 @@ import com.agathver.cardtrack.models.Result
 import com.agathver.cardtrack.models.Sms
 import java.sql.Timestamp
 
-class SmsReader {
+class SmsReader(private val context: Context) {
 
-    fun getAllSms(ctx: Context): Result<List<Sms>> {
-        ctx.contentResolver.query(
+    fun getAllSms(lastScan: Long, now: Long): Result<List<Sms>> {
+        context.contentResolver.query(
             Telephony.Sms.Inbox.CONTENT_URI,
             arrayOf(
                 Telephony.Sms.Inbox.ADDRESS,
                 Telephony.Sms.Inbox.DATE_SENT,
                 Telephony.Sms.Inbox.BODY
-            ), "date >= ?", arrayOf((System.currentTimeMillis() - 30 * 86400000L).toString()),
-            "date DESC"
+            ), Telephony.Sms.Inbox.DATE_SENT + " BETWEEN ? AND ?",
+            arrayOf(lastScan.toString(), now.toString()),
+            Telephony.Sms.Inbox.DATE_SENT + " DESC"
         ).use { cursor ->
             if (cursor == null) {
                 return Result.error("Cannot open cursor")
