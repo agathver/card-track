@@ -40,7 +40,9 @@ class MainActivity : AppCompatActivity() {
         val requestPermissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
                 if (isGranted) {
-                    continueToApp()
+                    showDisclaimerUI { _, _ ->
+                        continueToApp()
+                    }
                 } else {
                     showRequiresSmsPermissionUI(null)
                 }
@@ -50,6 +52,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun showDisclaimerUI(then: DialogInterface.OnClickListener) {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.disclaimer_title)
+            .setMessage(R.string.disclaimer_text)
+            .setPositiveButton("I understand", then)
+            .create()
+            .show()
+    }
+
     private fun continueToApp() {
         startActivity(Intent(this, CardTrackActivity::class.java))
         finish()
@@ -57,6 +68,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showRequiresSmsPermissionUI(okListener: DialogInterface.OnClickListener?) {
         AlertDialog.Builder(this)
+            .setTitle(R.string.require_sms_permission_title)
             .setMessage(R.string.require_sms_permission_text)
             .setPositiveButton("OK", okListener)
             .create()

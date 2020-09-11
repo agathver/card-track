@@ -4,7 +4,7 @@
     <string name="title_spends">Spends</string>
     <string name="title_alerts">Alerts</string>
     <string name="require_sms_permission_text">Card Track requires permission to read your SMS to track your card spending by reading the notifications sent by your bank</string>
-    <string name="card_item_title">%1$s %2$s card %3$s (%4$d)</string>
+    <string name="card_item_title">%1$s %2$s card %3$s</string>
     <string name="title_activity_card_detail">Card Details</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -17,9 +17,12 @@
     <string name="money_bag">💰</string>
     <string name="transaction_description">%1$s to %2$s</string>
     <string name="transaction_metadata">💳 %1$s %2$s</string>
-    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="title_activity_welcome">Welcome</string>
     <string name="app_splash_icon">💳💰</string>
     <string name="app_tag_line">Track your card spendings</string>
     <string name="get_started">Get started</string>
     <string name="card">💳</string>
+    <string name="require_sms_permission_title">SMS read access</string>
+    <string name="disclaimer_title">Disclaimer</string>
+    <string name="disclaimer_text">Always verify your dues with your credit card statement. Card Track makes no guarantee of correctness of the data shown. Card Track relies on SMS notification to identify transactions. However, SMS messages are unreliable and notifications may not be delivered. Your card issuer may not send an SMS notification for all transactions (such as EMI debits) or charge hidden fees (like forex markup). Also, Card Track may not be able to recognize all transaction notifications sent by your card issuer. Treat the amounts shown by Card Track as a convenience rather than a source of truth.</string>
 </resources>

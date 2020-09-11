@@ -33,8 +33,7 @@ class CardListAdapter internal constructor(
             R.string.card_item_title,
             card.bank,
             card.type.name.toLowerCase(Locale.ROOT).capitalize(Locale.ROOT),
-            card.identifier,
-            card.id
+            card.identifier
         )
         holder.secondaryTextView.text = card.unbilledAmount.toString()
         holder.itemView.setOnClickListener { clickListener(card) }
