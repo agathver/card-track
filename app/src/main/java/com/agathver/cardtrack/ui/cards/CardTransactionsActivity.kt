@@ -1,11 +1,12 @@
 package com.agathver.cardtrack.ui.cards
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.agathver.cardtrack.R
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class CardTransactionsActivity : AppCompatActivity() {
 
@@ -13,8 +14,8 @@ class CardTransactionsActivity : AppCompatActivity() {
         const val ARG_CARD_ID = "CARD_ID"
     }
 
-    private val cardTransactionsViewModel: CardTransactionsViewModel by viewModels {
-        CardTransactionsViewModelFactory(this.application, this.intent.extras!!.getInt(ARG_CARD_ID))
+    private val cardTransactionsViewModel: CardTransactionsViewModel by viewModel {
+        parametersOf(this.intent.extras!!.getInt(ARG_CARD_ID))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,5 +1,6 @@
 package com.agathver.cardtrack.services
 
+import android.app.Application
 import android.content.SharedPreferences
 import android.util.Log
 import com.agathver.cardtrack.models.*
@@ -49,7 +50,7 @@ class TransactionImporter(
     ): List<Transaction> {
         return transactions.map { transactionInfo ->
             val transaction = Transaction(card, transactionInfo)
-            Log.d(TAG, "Creating card_transaction $transaction")
+            Log.d(TAG, "Creating transaction $transaction for card $card")
             transactionRepository.insert(transaction)
             transaction
         }
@@ -67,9 +68,15 @@ class TransactionImporter(
             card = Card(cardInfo.identifier, cardInfo.type, cardInfo.bank, cardInfo.country)
             Log.d(TAG, "Creating card $card")
             cardRepository.insert(card)
+            card = cardRepository.findByIdentity(
+                cardInfo.identifier,
+                cardInfo.type,
+                cardInfo.bank,
+                cardInfo.country
+            )
         }
 
-        return card
+        return card!!
     }
 
     private fun <X, Y> pairs(xList: Sequence<X>, yList: Sequence<Y>): Sequence<Pair<X, Y>> {

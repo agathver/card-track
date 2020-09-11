@@ -1,4 +1,4 @@
-package com.agathver.cardtrack
+package com.agathver.cardtrack.ui
 
 import android.Manifest
 import android.content.DialogInterface
@@ -11,7 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.agathver.cardtrack.ui.CardTrackActivity
+import com.agathver.cardtrack.R
 
 class MainActivity : AppCompatActivity() {
 

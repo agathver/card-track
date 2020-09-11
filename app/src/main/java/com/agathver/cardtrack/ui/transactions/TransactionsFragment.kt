@@ -5,17 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.agathver.cardtrack.ui.cards.CardsViewModelFactory
 import com.agathver.cardtrack.R
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TransactionsFragment : Fragment() {
 
-    private val transactionsViewModel: TransactionsViewModel by activityViewModels {
-        CardsViewModelFactory(requireActivity().application)
-    }
+    private val transactionsViewModel: TransactionsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,

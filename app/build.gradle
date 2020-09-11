@@ -38,6 +38,7 @@ ext {
     fragmentVersion = '1.2.5'
     navigationVersion = '2.3.0'
     lifecycleVersion = '2.2.0'
+    koinVersion = '2.1.6'
 }
 
 dependencies {
@@ -65,6 +66,9 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+
+    implementation "org.koin:koin-android:$koinVersion"
+    implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
 
     kapt "androidx.room:room-compiler:$roomVersion"
 

@@ -1,7 +1,9 @@
 package com.agathver.cardtrack.ui.cards
 
 import android.content.Context
+import android.icu.util.CurrencyAmount
 import android.text.format.DateUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,7 +48,7 @@ class CardTransactionListAdapter internal constructor(
     }
 
     private fun formatCurrency(transaction: Transaction): String {
-        val formatter = NumberFormat.getInstance()
+        val formatter = NumberFormat.getCurrencyInstance()
         formatter.currency = transaction.currency
         return formatter.format(transaction.amount)
     }
