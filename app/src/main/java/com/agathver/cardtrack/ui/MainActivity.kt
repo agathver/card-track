@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         AlertDialog.Builder(this)
             .setTitle(R.string.disclaimer_title)
             .setMessage(R.string.disclaimer_text)
-            .setPositiveButton("I understand", then)
+            .setPositiveButton(R.string.disclaimer_confirmation, then)
             .create()
             .show()
     }
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         AlertDialog.Builder(this)
             .setTitle(R.string.require_sms_permission_title)
             .setMessage(R.string.require_sms_permission_text)
-            .setPositiveButton("OK", okListener)
+            .setPositiveButton(R.string.ok, okListener)
             .create()
             .show()
     }
