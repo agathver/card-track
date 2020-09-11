@@ -30,7 +30,7 @@ val templates = sequenceOf(
                 )
             ),
             Matcher(
-                pattern = Regex("""ALERT:\s*\w+\.(\d+\.\d{2}) spent via (\w) Card (\w+) at (.+) on.+"""),
+                pattern = Regex("""ALERT:\s*\w+\.(\d+\.\d{2}) spent via (\w+) Card (\w+) at (.+) on.+"""),
                 mapping = TemplatePatternMapping(
                     currency = currency("INR"),
                     amount = extractDouble(1),
