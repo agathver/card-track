@@ -9,10 +9,10 @@ import com.agathver.cardtrack.models.TransactionWithCardDetails
 
 @Dao
 interface TransactionRepository {
-    @Query("SELECT * FROM `transaction` JOIN card ON `transaction`.cardId = card.id")
+    @Query("SELECT * FROM `transaction` JOIN card ON `transaction`.cardId = card.id ORDER BY date DESC")
     fun findAll(): LiveData<List<TransactionWithCardDetails>>
 
-    @Query("SELECT * FROM `transaction` WHERE cardId = :cardId")
+    @Query("SELECT * FROM `transaction` WHERE cardId = :cardId ORDER BY date DESC")
     fun findByCard(cardId: Int): LiveData<List<Transaction>>
 
     @Query("SELECT sum(amount) FROM `transaction` WHERE cardId = :cardId")

@@ -1,9 +1,7 @@
 package com.agathver.cardtrack.ui.cards
 
 import android.content.Context
-import android.icu.util.CurrencyAmount
 import android.text.format.DateUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.agathver.cardtrack.R
 import com.agathver.cardtrack.models.Transaction
-import java.text.NumberFormat
+import com.agathver.cardtrack.ui.formatCurrencyAmount
 
-class CardTransactionListAdapter internal constructor(
+class CardTransactionListAdapter(
     context: Context
 ) : RecyclerView.Adapter<CardTransactionListAdapter.TransactionViewHolder>() {
 
@@ -34,7 +32,7 @@ class CardTransactionListAdapter internal constructor(
         val transaction = transactions[position]
         holder.descriptionTextView.text = holder.descriptionTextView.resources.getString(
             R.string.transaction_description,
-            formatCurrency(transaction),
+            formatCurrencyAmount(transaction),
             transaction.merchant
         )
         holder.timestampTextView.text =
@@ -45,12 +43,6 @@ class CardTransactionListAdapter internal constructor(
                 DateUtils.DAY_IN_MILLIS,
                 0
             )
-    }
-
-    private fun formatCurrency(transaction: Transaction): String {
-        val formatter = NumberFormat.getCurrencyInstance()
-        formatter.currency = transaction.currency
-        return formatter.format(transaction.amount)
     }
 
     internal fun setTransactions(transactions: List<Transaction>?) {

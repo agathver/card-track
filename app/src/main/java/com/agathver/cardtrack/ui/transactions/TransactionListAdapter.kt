@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.agathver.cardtrack.R
 import com.agathver.cardtrack.models.TransactionWithCardDetails
-import java.text.NumberFormat
+import com.agathver.cardtrack.ui.formatCurrencyAmount
 
 class TransactionListAdapter internal constructor(
     context: Context
@@ -32,7 +32,7 @@ class TransactionListAdapter internal constructor(
         val transactionWithCardDetails = transactions[position]
         holder.descriptionTextView.text = holder.descriptionTextView.resources.getString(
             R.string.transaction_description,
-            formatCurrency(transactionWithCardDetails),
+            formatCurrencyAmount(transactionWithCardDetails.transaction),
             transactionWithCardDetails.transaction.merchant
         )
         val transactionDateTime = DateUtils.getRelativeDateTimeString(
@@ -49,12 +49,6 @@ class TransactionListAdapter internal constructor(
             } ${transactionWithCardDetails.card.identifier}",
             transactionDateTime
         )
-    }
-
-    private fun formatCurrency(transactionWithCardDetails: TransactionWithCardDetails): String {
-        val formatter = NumberFormat.getInstance()
-        formatter.currency = transactionWithCardDetails.transaction.currency
-        return formatter.format(transactionWithCardDetails.transaction.amount)
     }
 
     internal fun setTransactions(transactions: List<TransactionWithCardDetails>?) {
