@@ -1,4 +1,4 @@
-package com.agathver.cardtrack
+package com.recrsn.cardtrack
 
 import org.junit.Test
 

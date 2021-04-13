@@ -6,19 +6,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.agathver.cardtrack.ui.cards.CardsFragment"
+        android:name="com.recrsn.cardtrack.ui.cards.CardsFragment"
         android:label="@string/title_cards"
         tools:layout="@layout/fragment_cards" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.agathver.cardtrack.ui.transactions.TransactionsFragment"
+        android:name="com.recrsn.cardtrack.ui.transactions.TransactionsFragment"
         android:label="@string/title_spends"
         tools:layout="@layout/fragment_transactions" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.agathver.cardtrack.ui.notifications.NotificationsFragment"
+        android:name="com.recrsn.cardtrack.ui.notifications.NotificationsFragment"
         android:label="@string/title_alerts"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
